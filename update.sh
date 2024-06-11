@@ -4,7 +4,7 @@
 echo "Initialize ..."
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 DATE=$(date +"%Y-%m-%d-%M")
-LOGFILE="${SCRIPT_DIR/}${date}.log"
+LOGFILE="/${SCRIPT_DIR}/${DATE}.log"
 PW=`cat /home/content/Downloads/.pw`
 
 exec_command () {
