@@ -2,14 +2,14 @@
 #https://github.com/hauptwerk-consult/co_up_sw_v1_v2.git
 
 echo "Initialize ..."
-rm -rf tmp
-mkdir tmp
-date=$(date +"%Y-%m-%d-%M")
-LOGFILE="/home/content/Downloads/init_${date}.log"
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+DATE=$(date +"%Y-%m-%d-%M")
+LOGFILE="${SCRIPT_DIR/}${date}.log"
 PW=`cat /home/content/Downloads/.pw`
 
 exec_command () {
-	echo ${PW} | sudo -S $1 >${LOGFILE} 2>&1
+	echo ${PW} | sudo -S $1 | tee ${LOGFILE} 2>&1
 }
 
-exec_command 'pacman -S konsole"
+exec_command 'pacman -S konsole'
+exec_command 'pacman -S wget'
