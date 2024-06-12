@@ -25,5 +25,12 @@ print 'INFO: Settings for autologin'
 exec_command "chown root:root ${SCRIPT_DIR}/sddm.conf"
 exec_command "cp -rp ${SCRIPT_DIR}/sddm.conf /etc"
 
+print 'INFO: Install webkit2gtk'
+exec_command 'pacman -S webkit2gtk'
+
+print 'INFO: Create content_sudo file'
+exec_command "chown root:root ${SCRIPT_DIR}/user_content_sudo"
+exec_command "cp -rp ${SCRIPT_DIR}/user_content_sudo /etc/sudoers.d"
+
 print 'INFO: Sleep for 20 seconds ...'
 exec_command 'sleep 20'
