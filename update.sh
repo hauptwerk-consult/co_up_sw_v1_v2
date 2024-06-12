@@ -1,11 +1,12 @@
 #!/bin/bash
 #https://github.com/hauptwerk-consult/co_up_sw_v1_v2.git
 
-TIME=$(date +"%Y-%m-%d-%H-%M-%S")
+TIME1=$(date +"%Y-%m-%d-%H-%M-%S")
 LOGFILE="${HOME}/.tmp/update.log"
 SUITE=`ls -al /home/content/Sweelinq/UserData | grep /Suite_ | awk '{print $11}' | awk 'BEGIN { FS = "/" } ; { print $5 };'`
 print () {
-	echo ${TIME} $1 ... | tee -a ${LOGFILE} 2>&1
+	TIME2=$(date +"%Y-%m-%d-%H-%M-%S")
+	echo ${TIME2} $1 ... | tee -a ${LOGFILE} 2>&1
 	sleep 3
 }
 
@@ -47,7 +48,7 @@ exec_command "mv -f ${SCRIPT_DIR}/sweelinq_delay.py ${HOME}/.script"
 if [ ! -d /opt/Sweelinq_v1* ]
 then 
 	print 'INFO: Move current Sweelinq v1 version'
-	exec_command "mv -f /opt/Sweelinq /opt/Sweelinq_v1_${TIME}"
+	exec_command "mv -f /opt/Sweelinq /opt/Sweelinq_v1_${TIME1}"
 fi
 
 if [ ! -d /opt/Sweelinq_v1* ]
