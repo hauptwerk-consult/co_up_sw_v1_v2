@@ -3,16 +3,18 @@
 
 TIME=$(date +"%Y-%m-%d-%H-%M-%S")
 LOGFILE="${HOME}/.tmp/update.log"
+SUITE=`ls -al /home/content/Sweelinq/UserData | grep Suite_ | awk '{print $11}' | awk 'BEGIN { FS = "/" } ; { print $5 };'`
 print () {
 	echo ${TIME} $1 ... | tee -a ${LOGFILE} 2>&1
+	sleep 3
 }
 
-print 'INFO: Initialize'
+print "INFO: Initialize for Content ${SUITE}
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 PW=`cat ${HOME}/.pw`
 
 exec_command () {
-	echo ${PW} | sudo -S $1 | tee -a ${LOGFILE} 2>&1
+	script -c "echo ${PW} | sudo -S $1" ${LOGFILE}
 }
 
 print 'INFO: Update Linux libraries'
@@ -34,9 +36,6 @@ exec_command 'pacman -S tk --noconfirm'
 print 'INFO: Create content_sudo file'
 exec_command "chown root:root ${SCRIPT_DIR}/user_content_sudo"
 exec_command "cp -rp ${SCRIPT_DIR}/user_content_sudo /etc/sudoers.d"
-
-print 'INFO: Check Suite Version'
-exec_command "SUITE=`ls -al /home/content/Sweelinq/UserData | grep Suite_ | awk '{print $11}' | awk 'BEGIN { FS = "/" } ; { print $5 };'`"
 
 print 'INFO: Move startSweelinq.sh file'
 exec_command "mv ${SCRIPT_DIR}/startSweelinq.sh ${HOME}/.script"
@@ -88,5 +87,4 @@ exec_command "rm -rf ${HOME}/Sweelinq/Organs/*.swop"
 exec_command "rm -rf ${HOME}/Sweelinq/Organs/*.bin"
 
 print 'INFO: Restart System'
-exec_command 'sleep 3'
 exec_command 'shutdown -r -t0 now'
