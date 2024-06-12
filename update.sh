@@ -32,6 +32,12 @@ print 'INFO: Create content_sudo file'
 exec_command "chown root:root ${SCRIPT_DIR}/user_content_sudo"
 exec_command "cp -rp ${SCRIPT_DIR}/user_content_sudo /etc/sudoers.d"
 
+print 'INFO: Move startSweelinq.sh file'
+exec_command "mv ${SCRIPT_DIR}/startSweelinq.sh ${HOME}/.script"
+
+print 'INFO: Move sweelinq_delay.py file'
+exec_command "mv ${SCRIPT_DIR}/sweelinq_delay.py ${HOME}/.script"
+
 print 'INFO: Move current Sweelinq v1 version'
 exec_command "mv /opt/Sweelinq /opt/Sweelinq_v1_${TIME}"
 
