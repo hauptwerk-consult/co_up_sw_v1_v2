@@ -42,4 +42,4 @@ print 'INFO: Install Sweelinq Version 2'
 exec_command "tar -xf /home/content/Downloads/Sweelinq.tar -C /opt"
 
 print 'INFO: Remove all files in Download folder'
-exec_command 'rm -rf /home/content/Download'
+exec_command 'rm -rf /home/content/Downloads/*'
