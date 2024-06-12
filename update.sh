@@ -4,10 +4,10 @@
 TIME=$(date +"%Y-%m-%d-%H-%M-%S")
 LOGFILE="${HOME}/.tmp/update.log"
 print () {
-	echo ${TIME} $1 | tee -a ${LOGFILE} 2>&1
+	echo ${TIME} $1 ... | tee -a ${LOGFILE} 2>&1
 }
 
-print 'INFO: Initialize ...'
+print 'INFO: Initialize'
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 PW=`cat /home/content/Downloads/.pw`
 
@@ -35,8 +35,11 @@ exec_command "cp -rp ${SCRIPT_DIR}/user_content_sudo /etc/sudoers.d"
 print 'INFO: Move current Sweelinq v1 version'
 exec_command "mv /opt/Sweelinq /opt/Sweelinq_v1_${date}"
 
-print 'INFO: Install Sweelinq Version 2'
-exec_command "tar -xf ${SCRIPT_DIR}/Sweelinq.tar -C /opt"
+print 'INFO: Download Sweelinq binaries'
+exec_command 'wget https://cosweelinq.blob.core.windows.net/sweelinq/Sweelinq.tar'
+
+#print 'INFO: Install Sweelinq Version 2'
+#exec_command "tar -xf /home/content/Sweelinq.tar -C /opt"
 
 print 'INFO: Sleep for 20 seconds ...'
 exec_command 'sleep 20'
