@@ -67,6 +67,16 @@ if [ "$SUITE" == "Suite_III" ]; then
 	exec_command "ln -sf ${HOME}/.swlnqcfg/GeneralSettings-Suite_III.swgs ${HOME}/Sweelinq/UserData/GeneralSettings.swgs"
 fi
 
+print 'INFO: Install extra Packages'
+exec_command 'pacman -S acpid --noconfirm'
+exec_command 'systemctl start acpid'
+exec_command 'systemctl enable acpid'
+
+print 'INFO: Create power file'
+exec_command "sudo mkdir -p /etc/acpi/events"
+exec_command "chown root:root ${SCRIPT_DIR}/power"
+exec_command "cp -rp ${SCRIPT_DIR}/power /etc/acpi/events"
+
 print 'INFO: Remove all files in Download folder'
 exec_command 'rm -rf /home/content/Downloads/*'
 

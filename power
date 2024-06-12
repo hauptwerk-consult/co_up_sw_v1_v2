@@ -1,0 +1,2 @@
+event=button/power
+action=/home/content/.script/poweroff.sh
