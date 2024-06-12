@@ -39,7 +39,4 @@ print 'INFO: Download Sweelinq binaries'
 exec_command 'wget https://cosweelinq.blob.core.windows.net/sweelinq/Sweelinq.tar'
 
 print 'INFO: Install Sweelinq Version 2'
-exec_command "tar -xf /home/content/Sweelinq.tar -C /opt"
-
-print 'INFO: Sleep for 20 seconds ...'
-exec_command 'sleep 20'
+exec_command "tar -xf /home/content/Downloads/Sweelinq.tar -C /opt"
