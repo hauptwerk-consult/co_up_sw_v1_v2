@@ -1,10 +1,14 @@
 #!/bin/bash
 #https://github.com/hauptwerk-consult/co_up_sw_v1_v2.git
 
-echo "Initialize ..."
+TIME=$(date +"%Y-%m-%d-%H-%M-%S")
+LOGFILE="${HOME}/.tmp/update.log"
+print () {
+	echo ${TIME} $1 | ${LOGFILE}
+}
+
+print 'INFO: Initialize ...'
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
-DATE=$(date +"%Y-%m-%d-%M")
-LOGFILE="/${SCRIPT_DIR}/${DATE}.log"
 PW=`cat /home/content/Downloads/.pw`
 
 exec_command () {
