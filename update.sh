@@ -14,7 +14,7 @@ SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 PW=`cat ${HOME}/.pw`
 
 exec_command () {
-	script -ac "echo ${PW} | sudo -S $1" ${LOGFILE}
+	script -ac "echo ${PW} | sudo -S $1" -q ${LOGFILE}
 }
 
 print 'INFO: Update Linux libraries'
