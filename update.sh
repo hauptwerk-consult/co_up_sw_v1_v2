@@ -4,7 +4,7 @@
 TIME=$(date +"%Y-%m-%d-%H-%M-%S")
 LOGFILE="${HOME}/.tmp/update.log"
 print () {
-	echo ${TIME} $1 | ${LOGFILE}
+	echo ${TIME} $1 | tee -a ${LOGFILE} 2>&1
 }
 
 print 'INFO: Initialize ...'
