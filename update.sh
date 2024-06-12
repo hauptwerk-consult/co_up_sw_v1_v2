@@ -22,8 +22,8 @@ print 'INFO: Install konsole package'
 exec_command 'pacman -S konsole'
 
 print 'INFO: Settings for autologin'
-exec_command 'chown root:root ${SCRIPT_DIR}/sddm.conf'
-exec_command 'cp -rp ${SCRIPT_DIR}/sddm.conf /etc'
+exec_command "chown root:root ${SCRIPT_DIR}/sddm.conf"
+exec_command "cp -rp ${SCRIPT_DIR}/sddm.conf /etc"
 
 print 'INFO: Sleep for 20 seconds ...'
 exec_command 'sleep 20'
