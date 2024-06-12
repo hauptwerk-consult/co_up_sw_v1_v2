@@ -77,8 +77,12 @@ exec_command "sudo mkdir -p /etc/acpi/events"
 exec_command "chown root:root ${SCRIPT_DIR}/power"
 exec_command "cp -rp ${SCRIPT_DIR}/power /etc/acpi/events"
 
-print 'INFO: Remove all files in Download folder'
+print 'INFO: Remove all files in Downloads folder'
 exec_command 'rm -rf /home/content/Downloads/*'
+
+print 'INFO: Remove old Organ files'
+exec_command "rm -rf ${HOME}/Sweelinq/Organs/*.swop"
+exec_command "rm -rf ${HOME}/Sweelinq/Organs/*.bin"
 
 print 'INFO: Restart System'
 exec_command 'sleep 3'
