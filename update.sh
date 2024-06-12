@@ -76,6 +76,9 @@ print 'INFO: Create power file'
 exec_command "sudo mkdir -p /etc/acpi/events"
 exec_command "chown root:root ${SCRIPT_DIR}/power"
 exec_command "cp -rp ${SCRIPT_DIR}/power /etc/acpi/events"
+exec_command "cp -rp ${SCRIPT_DIR}/poweroff.sh ${HOME}/.script"
+exec_command "chown root:root snd-virmidi.conf"
+exec_command "cp -rp ${SCRIPT_DIR}/snd-virmidi.conf /etc/modules-load.d"
 
 print 'INFO: Remove all files in Downloads folder'
 exec_command 'rm -rf /home/content/Downloads/*'
