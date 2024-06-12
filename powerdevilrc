@@ -3,4 +3,4 @@ TurnOffDisplayWhenIdle=false
 
 [AC][SuspendAndShutdown]
 AutoSuspendAction=0
-PowerButtonAction=0
+PowerButtonAction=8
