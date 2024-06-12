@@ -17,3 +17,5 @@ exec_command () {
 
 exec_command 'pacman -S konsole'
 exec_command 'pacman -S wget'
+print 'INFO: Sleep for 20 seconds ...'
+exec_command 'sleep 20'
