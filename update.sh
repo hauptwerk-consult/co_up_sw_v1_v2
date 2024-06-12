@@ -16,21 +16,27 @@ exec_command () {
 }
 
 print 'INFO: Update Linux libraries'
-exec_command 'pacman -Syu'
+exec_command 'pacman -Syu --noconfirm'
 
 print 'INFO: Install konsole package'
-exec_command 'pacman -S konsole'
+exec_command 'pacman -S konsole --noconfirm'
 
 print 'INFO: Settings for autologin'
 exec_command "chown root:root ${SCRIPT_DIR}/sddm.conf"
 exec_command "cp -rp ${SCRIPT_DIR}/sddm.conf /etc"
 
 print 'INFO: Install webkit2gtk'
-exec_command 'pacman -S webkit2gtk'
+exec_command 'pacman -S webkit2gtk --noconfirm'
 
 print 'INFO: Create content_sudo file'
 exec_command "chown root:root ${SCRIPT_DIR}/user_content_sudo"
 exec_command "cp -rp ${SCRIPT_DIR}/user_content_sudo /etc/sudoers.d"
+
+print 'INFO: Move current Sweelinq v1 version'
+exec_command "mv /opt/Sweelinq /opt/Sweelinq_v1_${date}"
+
+print 'INFO: Install Sweelinq Version 2'
+exec_command "tar -xf ${SCRIPT_DIR}/Sweelinq.tar -C /opt"
 
 print 'INFO: Sleep for 20 seconds ...'
 exec_command 'sleep 20'
