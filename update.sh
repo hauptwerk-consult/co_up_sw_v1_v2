@@ -85,15 +85,18 @@ exec_command "sudo mkdir -p /etc/acpi/events"
 exec_command "chown root:root ${SCRIPT_DIR}/power"
 exec_command "cp -rp ${SCRIPT_DIR}/power /etc/acpi/events"
 exec_command "cp -rp ${SCRIPT_DIR}/poweroff.sh ${HOME}/.script"
-exec_command "chown root:root snd-virmidi.conf"
+exec_command "chown root:root ${SCRIPT_DIR}/snd-virmidi.conf"
 exec_command "cp -rp ${SCRIPT_DIR}/snd-virmidi.conf /etc/modules-load.d"
 
 print 'INFO: Remove all files in Downloads folder'
 exec_command "rm -rf /home/content/Downloads/*"
 
-print 'INFO: Remove old Organ files'
-exec_command "rm -rf ${HOME}/Sweelinq/Organs/*.swop"
-exec_command "rm -rf ${HOME}/Sweelinq/Organs/*.bin"
+if [ ! -d /opt/Sweelinq_v1* ]
+then
+	print 'INFO: Remove old Organ files'
+	exec_command "rm -rf ${HOME}/Sweelinq/Organs/*.swop"
+	exec_command "rm -rf ${HOME}/Sweelinq/Organs/*.bin"
+fi
 
 print 'INFO: Restart System'
 #exec_command "shutdown -r -t0 now"
