@@ -37,7 +37,7 @@ exec_command "cp -rp ${SCRIPT_DIR}/user_content_sudo /etc/sudoers.d"
 
 print 'INFO: Move startSweelinq.sh file'
 exec_command "mv ${SCRIPT_DIR}/startSweelinq.sh ${HOME}/.script"
-exec_command "chmod +x ${HOME}/.script"
+exec_command "chmod +x ${HOME}/.script/startSweelinq.sh"
 
 print 'INFO: Move sweelinq_delay.py file'
 exec_command "mv ${SCRIPT_DIR}/sweelinq_delay.py ${HOME}/.script"
