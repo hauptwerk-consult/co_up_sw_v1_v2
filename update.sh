@@ -9,7 +9,7 @@ print () {
 
 print 'INFO: Initialize'
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
-PW=`cat /home/content/Downloads/.pw`
+PW=`cat ${HOME}/.pw`
 
 exec_command () {
 	echo ${PW} | sudo -S $1 | tee -a ${LOGFILE} 2>&1
