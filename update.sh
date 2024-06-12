@@ -33,13 +33,13 @@ exec_command "chown root:root ${SCRIPT_DIR}/user_content_sudo"
 exec_command "cp -rp ${SCRIPT_DIR}/user_content_sudo /etc/sudoers.d"
 
 print 'INFO: Move current Sweelinq v1 version'
-exec_command "mv /opt/Sweelinq /opt/Sweelinq_v1_${date}"
+exec_command "mv /opt/Sweelinq /opt/Sweelinq_v1_${TIME}"
 
 print 'INFO: Download Sweelinq binaries'
 exec_command 'wget https://cosweelinq.blob.core.windows.net/sweelinq/Sweelinq.tar'
 
-#print 'INFO: Install Sweelinq Version 2'
-#exec_command "tar -xf /home/content/Sweelinq.tar -C /opt"
+print 'INFO: Install Sweelinq Version 2'
+exec_command "tar -xf /home/content/Sweelinq.tar -C /opt"
 
 print 'INFO: Sleep for 20 seconds ...'
 exec_command 'sleep 20'
