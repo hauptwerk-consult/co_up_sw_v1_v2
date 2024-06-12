@@ -80,13 +80,14 @@ exec_command "pacman -S acpid --noconfirm"
 exec_command "systemctl start acpid"
 exec_command "systemctl enable acpid"
 
-print 'INFO: Create power file'
+print 'INFO: Create power files'
 exec_command "sudo mkdir -p /etc/acpi/events"
 exec_command "chown root:root ${SCRIPT_DIR}/power"
 exec_command "cp -rp ${SCRIPT_DIR}/power /etc/acpi/events"
 exec_command "cp -rp ${SCRIPT_DIR}/poweroff.sh ${HOME}/.script"
 exec_command "chown root:root ${SCRIPT_DIR}/snd-virmidi.conf"
 exec_command "cp -rp ${SCRIPT_DIR}/snd-virmidi.conf /etc/modules-load.d"
+exec_command "cp -rp ${SCRIPT_DIR}/powerdevilrc ${HOME}/.config
 
 print 'INFO: Remove all files in Downloads folder'
 exec_command "rm -rf /home/content/Downloads/*"
