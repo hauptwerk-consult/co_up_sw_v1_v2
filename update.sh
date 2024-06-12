@@ -44,6 +44,6 @@ exec_command "tar -xf /home/content/Downloads/Sweelinq.tar -C /opt"
 print 'INFO: Remove all files in Download folder'
 exec_command 'rm -rf /home/content/Downloads/*'
 
-print 'INFO: Start Sweelinq Version 2'
+print 'INFO: Restart Syetem'
 exec_command 'sleep 3'
-exec_command '/opt/Sweelinq/Sweelinq'
+exec_command 'shutdown -r -t0 now'
