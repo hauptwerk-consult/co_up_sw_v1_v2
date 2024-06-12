@@ -28,12 +28,16 @@ exec_command "cp -rp ${SCRIPT_DIR}/sddm.conf /etc"
 print 'INFO: Install webkit2gtk'
 exec_command 'pacman -S webkit2gtk --noconfirm'
 
+print 'INFO: Install tk'
+exec_command 'pacman -S tk --noconfirm'
+
 print 'INFO: Create content_sudo file'
 exec_command "chown root:root ${SCRIPT_DIR}/user_content_sudo"
 exec_command "cp -rp ${SCRIPT_DIR}/user_content_sudo /etc/sudoers.d"
 
 print 'INFO: Move startSweelinq.sh file'
 exec_command "mv ${SCRIPT_DIR}/startSweelinq.sh ${HOME}/.script"
+exec_command "chmod +x ${HOME}/.script"
 
 print 'INFO: Move sweelinq_delay.py file'
 exec_command "mv ${SCRIPT_DIR}/sweelinq_delay.py ${HOME}/.script"
@@ -50,6 +54,6 @@ exec_command "tar -xf /home/content/Downloads/Sweelinq.tar -C /opt"
 print 'INFO: Remove all files in Download folder'
 exec_command 'rm -rf /home/content/Downloads/*'
 
-print 'INFO: Restart Syetem'
+print 'INFO: Restart System'
 exec_command 'sleep 3'
 exec_command 'shutdown -r -t0 now'

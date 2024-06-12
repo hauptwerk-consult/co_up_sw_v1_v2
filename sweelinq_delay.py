@@ -62,7 +62,7 @@ def ping():
 	ping_success = False
 	loop_counter = 0
 	while loop_counter < PING_TIMEOUT:
-		response = os.system('ping -c 1 google.comm')
+		response = os.system('ping -c 1 google.com')
 		time.sleep(1)
 		loop_counter += 1
 		if response == 0:
