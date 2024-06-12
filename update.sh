@@ -87,7 +87,7 @@ exec_command "cp -rp ${SCRIPT_DIR}/power /etc/acpi/events"
 exec_command "cp -rp ${SCRIPT_DIR}/poweroff.sh ${HOME}/.script"
 exec_command "chown root:root ${SCRIPT_DIR}/snd-virmidi.conf"
 exec_command "cp -rp ${SCRIPT_DIR}/snd-virmidi.conf /etc/modules-load.d"
-exec_command "cp -rp ${SCRIPT_DIR}/powerdevilrc ${HOME}/.config
+exec_command "cp -rp ${SCRIPT_DIR}/powerdevilrc ${HOME}/.config"
 
 print 'INFO: Remove all files in Downloads folder'
 exec_command "rm -rf /home/content/Downloads/*"
@@ -100,4 +100,4 @@ then
 fi
 
 print 'INFO: Restart System'
-#exec_command "shutdown -r -t0 now"
+exec_command "shutdown -r -t0 now"
