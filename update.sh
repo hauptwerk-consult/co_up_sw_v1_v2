@@ -3,7 +3,7 @@
 
 TIME=$(date +"%Y-%m-%d-%H-%M-%S")
 LOGFILE="${HOME}/.tmp/update.log"
-SUITE=`ls -al /home/content/Sweelinq/UserData | grep Suite_ | awk '{print $11}' | awk 'BEGIN { FS = "/" } ; { print $5 };'`
+SUITE=`ls -al /home/content/Sweelinq/UserData | grep /Suite_ | awk '{print $11}' | awk 'BEGIN { FS = "/" } ; { print $5 };'`
 print () {
 	echo ${TIME} $1 ... | tee -a ${LOGFILE} 2>&1
 	sleep 3
