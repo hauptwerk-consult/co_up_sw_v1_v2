@@ -4,6 +4,12 @@
 TIME1=$(date +"%Y-%m-%d-%H-%M-%S")
 LOGFILE="${HOME}/.tmp/update.log"
 SUITE=`ls -al /home/content/Sweelinq/UserData | grep /Suite_ | awk '{print $11}' | awk 'BEGIN { FS = "/" } ; { print $5 };'`
+SWV2=NOTEXISTS
+if [ -d /opt/Sweelinq_v1* ]
+then 
+	SWV2=EXISTS
+fi
+
 print () {
 	TIME2=$(date +"%Y-%m-%d-%H-%M-%S")
 	echo ${TIME2} $1 ... | tee -a ${LOGFILE} 2>&1
@@ -45,19 +51,18 @@ exec_command "chmod +x ${HOME}/.script/startSweelinq.sh"
 print 'INFO: Move sweelinq_delay.py file'
 exec_command "mv -f ${SCRIPT_DIR}/sweelinq_delay.py ${HOME}/.script"
 
-if [ ! -d /opt/Sweelinq_v1* ]
-then 
+if [ $SWV2 = "NOTEXISTS" ]
 	print 'INFO: Move current Sweelinq v1 version'
 	exec_command "mv -f /opt/Sweelinq /opt/Sweelinq_v1_${TIME1}"
 fi
 
-if [ ! -d /opt/Sweelinq_v1* ]
+if [ $SWV2 = "NOTEXISTS" ]
 then
 	print 'INFO: Download Sweelinq binaries'
  	exec_command "wget https://cosweelinq.blob.core.windows.net/sweelinq/Sweelinq.tar"
 fi
 
-if [ ! -d /opt/Sweelinq_v1* ]
+if [ $SWV2 = "NOTEXISTS" ]
 then
 	print 'INFO: Install Sweelinq Version 2'
 	exec_command "tar -xf /home/content/Downloads/Sweelinq.tar -C /opt"
@@ -93,7 +98,7 @@ exec_command "cp -rp ${SCRIPT_DIR}/powerdevilrc ${HOME}/.config"
 print 'INFO: Remove all files in Downloads folder'
 exec_command "rm -rf /home/content/Downloads/*"
 
-if [ ! -d /opt/Sweelinq_v1* ]
+if [ $SWV2 = "NOTEXISTS" ]
 then
 	print 'INFO: Remove old Organ files'
 	exec_command "rm -rf ${HOME}/Sweelinq/Organs/*.swop"
