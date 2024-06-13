@@ -13,7 +13,7 @@ import os   # For performing ping command
 import time # For sleep()
 import sys  # For exiting with return code
 
-PING_TIMEOUT = 3   # In seconds
+PING_TIMEOUT = 30   # In seconds
 
 # handle left mouse click event on waiting window
 def waiting_mouse_click(event):
@@ -68,7 +68,7 @@ def ping():
 	ping_success = False
 	loop_counter = 0
 	while loop_counter < PING_TIMEOUT:
-		response = os.system('ping -c 1 google.comm')
+		response = os.system('ping -c 1 google.com')
 		time.sleep(1)
 		loop_counter += 1
 		if response == 0:
