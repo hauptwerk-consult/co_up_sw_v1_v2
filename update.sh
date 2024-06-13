@@ -91,6 +91,7 @@ print 'INFO: Create power files'
 exec_command "sudo mkdir -p /etc/acpi/events"
 exec_command "chown root:root ${SCRIPT_DIR}/power"
 exec_command "cp -rp ${SCRIPT_DIR}/power /etc/acpi/events"
+exec_command "chmod +x ${SCRIPT_DIR}/poweroff.sh"
 exec_command "cp -rp ${SCRIPT_DIR}/poweroff.sh ${HOME}/.script"
 exec_command "chown root:root ${SCRIPT_DIR}/snd-virmidi.conf"
 exec_command "cp -rp ${SCRIPT_DIR}/snd-virmidi.conf /etc/modules-load.d"
