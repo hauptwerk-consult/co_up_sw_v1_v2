@@ -13,29 +13,33 @@ import os   # For performing ping command
 import time # For sleep()
 import sys  # For exiting with return code
 
-PING_TIMEOUT = 30   # In seconds
+PING_TIMEOUT = 3   # In seconds
 
 # handle left mouse click event on waiting window
 def waiting_mouse_click(event):
-	waiting.destroy()
+	failed.destroy()
 	sys.exit(2)
+
+# close failed window after some time
+def close_failed_window():
+	failed.destroy()
 
 # define waiting for wifi message window
 def WaitingMessage():
 	global waiting
 	waiting = tk.Tk()
 	waiting.title('Starting Sweelinq')
-	window_width  = 300
-	window_height = 100
+	window_width  = 350
+	window_height = 150
 	screen_width  = waiting.winfo_screenwidth() / 2
 	screen_height = waiting.winfo_screenheight() / 2
 	center_x = int(screen_width / 2 - window_width / 2)
 	center_y = int(screen_height / 2 - window_height / 2)
 	waiting.geometry(f'{window_width}x{window_height}+{center_x}+{center_y}')
 	# Add message text
-	messagew = tk.Label(waiting, text = "Waiting for Wi-Fi connection...")
+	messagew = tk.Label(waiting, text = "Waiting for an Internet connection...")
 	messagew.place(relx = 0.5, rely = 0.5, anchor = 'center')
-	# bind event to Window root object
+	# bind event to waiting window
 	# (does not work if ping() is called)
 	waiting.bind('<Button-1>', waiting_mouse_click)
 
@@ -44,16 +48,18 @@ def FailedMessage():
 	global failed
 	failed = tk.Tk()
 	failed.title('Failed...')
-	window_width  = 300
-	window_height = 100
+	window_width  = 350
+	window_height = 150
 	screen_width  = failed.winfo_screenwidth() / 2
 	screen_height = failed.winfo_screenheight() / 2
 	center_x = int(screen_width / 2 - window_width / 2)
 	center_y = int(screen_height / 2 - window_height / 2)
 	failed.geometry(f'{window_width}x{window_height}+{center_x}+{center_y}')
 	# Add message text
-	messagef = tk.Label(failed, text = "Failed to make a Wi-Fi connection.\n\nPlease restart your organ.")
+	messagef = tk.Label(failed, text = "Failed to make an Internet connection.\n\nTrying to start Sweelinq without a connection.\n\nPlease restart the organ if Sweelinq fails to start.")
 	messagef.place(relx = 0.5, rely = 0.5, anchor = 'center')
+	# bind event to failed window
+	failed.bind('<Button-1>', waiting_mouse_click)
 
 # Perform ping and destroy window
 def ping():
@@ -62,7 +68,7 @@ def ping():
 	ping_success = False
 	loop_counter = 0
 	while loop_counter < PING_TIMEOUT:
-		response = os.system('ping -c 1 google.com')
+		response = os.system('ping -c 1 google.comm')
 		time.sleep(1)
 		loop_counter += 1
 		if response == 0:
@@ -80,6 +86,7 @@ waiting.mainloop()
 # Check if ping succeeded. If not: show new error pop-up
 if ping_success == False:
 	FailedMessage()
+	failed.after(7000, close_failed_window)
 	failed.mainloop()
 	sys.exit(1)
 else:
