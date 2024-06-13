@@ -52,6 +52,7 @@ print 'INFO: Move sweelinq_delay.py file'
 exec_command "mv -f ${SCRIPT_DIR}/sweelinq_delay.py ${HOME}/.script"
 
 if [ $SWV2 = "NOTEXISTS" ]
+then
 	print 'INFO: Move current Sweelinq v1 version'
 	exec_command "mv -f /opt/Sweelinq /opt/Sweelinq_v1_${TIME1}"
 fi
