@@ -53,14 +53,14 @@ exec_command "mv -f ${SCRIPT_DIR}/sweelinq_delay.py ${HOME}/.script"
 
 if [ $SWV2 = "NOTEXISTS" ]
 then
-	print 'INFO: Move current Sweelinq v1 version'
-	exec_command "mv -f /opt/Sweelinq /opt/Sweelinq_v1_${TIME1}"
+	print 'INFO: Download Sweelinq binaries'
+ 	exec_command "wget https://cosweelinq.blob.core.windows.net/sweelinq/Sweelinq.tar"
 fi
 
 if [ $SWV2 = "NOTEXISTS" ]
 then
-	print 'INFO: Download Sweelinq binaries'
- 	exec_command "wget https://cosweelinq.blob.core.windows.net/sweelinq/Sweelinq.tar"
+	print 'INFO: Move current Sweelinq v1 version'
+	exec_command "mv -f /opt/Sweelinq /opt/Sweelinq_v1_${TIME1}"
 fi
 
 if [ $SWV2 = "NOTEXISTS" ]
